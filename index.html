@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jayant Bodkurwar — Senior Software Engineer</title>
+<meta name="description" content="Jayant Bodkurwar — Senior Software Engineer building backend infrastructure for enterprise accounts-receivable, credit management, and AI agent systems." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%230B0F14%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%23E8A33D%22 font-family=%22monospace%22>J</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0F14;
+    --panel:#121922;
+    --panel-2:#161F2A;
+    --line:#26313E;
+    --text:#ECE8DE;
+    --muted:#8B94A3;
+    --amber:#E8A33D;
+    --amber-dim:#8A6423;
+    --teal:#3FA6A6;
+    --paper:#F1EFE8;
+    --shadow: 0 20px 60px -30px rgba(0,0,0,.6);
+    --radius: 6px;
+    --maxw: 920px;
+  }
+  :root[data-theme="light"]{
+    --ink:#F1EFE8;
+    --panel:#FBFAF6;
+    --panel-2:#FFFFFF;
+    --line:#DAD5C7;
+    --text:#171E26;
+    --muted:#5B6472;
+    --amber:#B87418;
+    --amber-dim:#D9A356;
+    --teal:#1F7A7A;
+    --shadow: 0 20px 50px -35px rgba(23,30,38,.25);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --ink:#F1EFE8;
+      --panel:#FBFAF6;
+      --panel-2:#FFFFFF;
+      --line:#DAD5C7;
+      --text:#171E26;
+      --muted:#5B6472;
+      --amber:#B87418;
+      --amber-dim:#D9A356;
+      --teal:#1F7A7A;
+      --shadow: 0 20px 50px -35px rgba(23,30,38,.25);
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Libre Franklin', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+
+  ::selection{ background:var(--amber); color:var(--ink); }
+
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--ink) 88%, transparent);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono'; font-size:.85rem; letter-spacing:.04em; color:var(--muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--amber);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--amber) 20%, transparent);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; } 50%{ opacity:.35; }
+  }
+  nav.links{ display:flex; align-items:center; gap:22px; }
+  nav.links a{
+    font-family:'IBM Plex Mono'; font-size:.82rem; text-decoration:none; color:var(--muted);
+    letter-spacing:.02em; transition:color .15s ease;
+  }
+  nav.links a:hover{ color:var(--text); }
+  .theme-toggle{
+    font-family:'IBM Plex Mono'; font-size:.78rem; color:var(--muted);
+    background:transparent; border:1px solid var(--line); border-radius:4px;
+    padding:5px 9px; cursor:pointer; letter-spacing:.03em;
+  }
+  .theme-toggle:hover{ border-color:var(--amber); color:var(--text); }
+
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; padding:96px 0 56px; overflow:hidden; }
+  #flow{ position:absolute; inset:0; width:100%; height:100%; opacity:.35; pointer-events:none; }
+  .hero-inner{ position:relative; z-index:1; }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr 280px; gap:40px; align-items:start;
+  }
+  .hero-photo{
+    position:relative; justify-self:end;
+  }
+  .hero-photo .frame{
+    width:280px; height:350px; overflow:hidden; border-radius:4px;
+    border:1px solid var(--line); background:var(--panel);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:grayscale(45%) contrast(1.08) sepia(8%) saturate(1.05);
+  }
+  .hero-photo .tick{
+    position:absolute; width:14px; height:14px; border-color:var(--amber); border-style:solid; border-width:0;
+  }
+  .hero-photo .tick.tl{ top:-6px; left:-6px; border-top-width:2px; border-left-width:2px; }
+  .hero-photo .tick.br{ bottom:-6px; right:-6px; border-bottom-width:2px; border-right-width:2px; }
+  .hero-photo .cap{
+    font-family:'IBM Plex Mono'; font-size:.66rem; color:var(--muted);
+    letter-spacing:.04em; text-transform:uppercase; margin-top:10px; text-align:right;
+  }
+  @media (max-width:720px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-photo{ justify-self:start; order:-1; margin-bottom:8px; }
+    .hero-photo .cap{ text-align:left; }
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:.85rem; color:var(--teal);
+    letter-spacing:.06em; margin:0 0 18px;
+  }
+  h1.name{
+    font-family:'Big Shoulders Display'; font-weight:800;
+    font-size:clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height:.98; margin:0 0 10px; text-transform:uppercase;
+    letter-spacing:.005em;
+    text-wrap:balance;
+    color:var(--text);
+  }
+  .role{
+    font-family:'Big Shoulders Display'; font-weight:600;
+    font-size:clamp(1.15rem, 2.4vw, 1.55rem);
+    color:var(--amber); text-transform:uppercase; letter-spacing:.03em;
+    margin:0 0 22px;
+  }
+  .tagline{
+    max-width:56ch; color:var(--muted); font-size:1.05rem; margin:0 0 40px;
+  }
+  .contact-row{ display:flex; flex-wrap:wrap; gap:10px 18px; margin-bottom:56px; }
+  .contact-row a{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'IBM Plex Mono'; font-size:.85rem; text-decoration:none;
+    color:var(--text); border:1px solid var(--line); border-radius:4px;
+    padding:7px 12px; transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .contact-row a:hover{ border-color:var(--amber); color:var(--amber); background:color-mix(in srgb, var(--amber) 6%, transparent); }
+  .contact-row a.primary{
+    background:var(--amber); border-color:var(--amber); color:var(--ink); font-weight:600;
+  }
+  .contact-row a.primary:hover{ background:var(--amber); color:var(--ink); filter:brightness(1.08); }
+
+  /* metrics ticker */
+  .metrics{
+    display:grid; grid-template-columns:repeat(6, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .metric{
+    background:var(--panel); padding:16px 14px; min-width:0;
+  }
+  .metric .num{
+    font-family:'IBM Plex Mono'; font-weight:600; font-size:1.35rem;
+    color:var(--text); font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .metric .lbl{
+    font-family:'IBM Plex Mono'; font-size:.68rem; color:var(--muted);
+    letter-spacing:.05em; text-transform:uppercase; margin-top:4px;
+  }
+  @media (max-width:720px){
+    .metrics{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  section:first-of-type{ border-top:none; }
+  .sec-eyebrow{
+    font-family:'IBM Plex Mono'; font-size:.85rem; color:var(--teal);
+    letter-spacing:.03em; margin:0 0 6px;
+  }
+  h2.sec-title{
+    font-family:'Big Shoulders Display'; font-weight:700; text-transform:uppercase;
+    font-size:clamp(1.6rem,3.4vw,2.1rem); margin:0 0 36px; letter-spacing:.01em;
+  }
+
+  /* experience */
+  .role-block{
+    display:grid; grid-template-columns:170px 1fr; gap:28px;
+    padding:28px 0; border-top:1px solid var(--line);
+  }
+  .role-block:first-child{ border-top:none; padding-top:0; }
+  .role-meta{ position:sticky; top:70px; align-self:start; }
+  .role-meta .dates{
+    font-family:'IBM Plex Mono'; font-size:.78rem; color:var(--muted);
+    display:block; margin-bottom:8px; font-variant-numeric:tabular-nums;
+  }
+  .role-meta .company{ font-weight:700; font-size:1.02rem; color:var(--text); }
+  .role-meta .place{ display:block; font-size:.88rem; color:var(--muted); margin-top:2px; }
+  .role-meta .title{ display:block; margin-top:8px; color:var(--amber); font-size:.9rem; font-weight:600; }
+
+  .bullets{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  .bullets li{
+    padding-left:18px; position:relative; color:var(--text); font-size:.98rem;
+  }
+  .bullets li::before{
+    content:"›"; position:absolute; left:0; color:var(--teal); font-weight:700;
+  }
+  .bullets li b{ color:var(--text); font-weight:700; }
+  .bullets li{ color:color-mix(in srgb, var(--text) 82%, var(--muted)); }
+
+  @media (max-width:720px){
+    .role-block{ grid-template-columns:1fr; gap:10px; }
+    .role-meta{ position:static; }
+  }
+
+  /* skills */
+  .skill-group{ margin-bottom:26px; }
+  .skill-group:last-child{ margin-bottom:0; }
+  .skill-group h3{
+    font-family:'IBM Plex Mono'; font-size:.78rem; text-transform:uppercase;
+    color:var(--muted); letter-spacing:.06em; font-weight:500; margin:0 0 12px;
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:.82rem; color:var(--text);
+    border:1px solid var(--line); border-radius:4px; padding:5px 10px;
+    background:var(--panel); transition:border-color .15s ease, transform .1s ease;
+  }
+  .tag:hover{ border-color:var(--teal); transform:translateY(-1px); }
+
+  /* projects */
+  .project{
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px 28px;
+    background:var(--panel); box-shadow:var(--shadow);
+  }
+  .project h3{ font-family:'Big Shoulders Display'; font-weight:700; font-size:1.4rem; margin:0 0 4px; text-transform:uppercase; }
+  .project .desc{ color:var(--muted); font-style:italic; margin:0 0 18px; font-size:.95rem; }
+  .project .repo-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:18px;
+    font-family:'IBM Plex Mono'; font-size:.85rem; color:var(--teal); text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .project .repo-link:hover{ border-bottom-color:var(--teal); }
+
+  /* education / awards */
+  .ledger{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  @media (max-width:720px){ .ledger{ grid-template-columns:1fr; } }
+  .ledger-item .k{ font-family:'IBM Plex Mono'; font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .ledger-item .v{ font-weight:700; font-size:1.05rem; }
+  .ledger-item .sub{ color:var(--muted); font-size:.92rem; margin-top:4px; }
+  .ledger-item .dates{ font-family:'IBM Plex Mono'; font-size:.8rem; color:var(--muted); margin-top:2px; display:block; }
+
+  /* footer */
+  footer{ padding:56px 0 80px; }
+  .footer-inner{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px;
+  }
+  footer .big{
+    font-family:'Big Shoulders Display'; font-weight:800; text-transform:uppercase;
+    font-size:clamp(1.8rem,5vw,3rem); line-height:1; max-width:14ch; text-wrap:balance;
+  }
+  footer .big a{ color:var(--amber); text-decoration:none; border-bottom:3px solid transparent; }
+  footer .big a:hover{ border-bottom-color:var(--amber); }
+  .foot-links{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+  .foot-links a{
+    font-family:'IBM Plex Mono'; font-size:.85rem; color:var(--muted); text-decoration:none;
+  }
+  .foot-links a:hover{ color:var(--text); }
+  .copyright{ font-family:'IBM Plex Mono'; font-size:.72rem; color:var(--muted); margin-top:40px; }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot" aria-hidden="true"></span> JAYANT.BODKURWAR</div>
+    <nav class="links">
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">résumé</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">MODE</button>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-grid">
+      <div>
+        <h1 class="name">Jayant<br>Bodkurwar</h1>
+        <p class="role">Senior Software Engineer, Serrala</p>
+        <p class="tagline">I build the backend infrastructure that enterprise finance teams trust to move money correctly — accounts-receivable platforms, credit-risk engines, and the job queues that keep them running at 0% failure.</p>
+      </div>
+      <div class="hero-photo">
+        <div class="frame">
+          <span class="tick tl" aria-hidden="true"></span>
+          <img src="assets/jayant_preview.jpg" alt="Jayant Bodkurwar" width="280" height="350" />
+          <span class="tick br" aria-hidden="true"></span>
+        </div>
+        <p class="cap">Florence, IT</p>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <a class="primary" href="assets/resume.pdf" target="_blank" rel="noopener">↓ Download Résumé</a>
+      <a href="mailto:jayantreddybodkurwar@gmail.com">✉ jayantreddybodkurwar@gmail.com</a>
+      <a href="tel:+917977046748">☎ +91 7977046748</a>
+      <a href="https://github.com/jayantreddy181198" target="_blank" rel="noopener">↗ github.com/jayantreddy181198</a>
+      <a href="https://linkedin.com/in/jayant-bodkurwar-67aa9414a" target="_blank" rel="noopener">↗ linkedin.com/in/jayant-bodkurwar-67aa9414a</a>
+    </div>
+
+    <div class="metrics reveal" id="metricsBlock">
+      <div class="metric"><div class="num">900+</div><div class="lbl">Commits Shipped</div></div>
+      <div class="metric"><div class="num">116K+</div><div class="lbl">Lines Shipped</div></div>
+      <div class="metric"><div class="num">550+</div><div class="lbl">REST Endpoints</div></div>
+      <div class="metric"><div class="num">45,000</div><div class="lbl">Jobs / Day</div></div>
+      <div class="metric"><div class="num">0%</div><div class="lbl">Infra Failure Rate</div></div>
+      <div class="metric"><div class="num">500K+</div><div class="lbl">Customers Served</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">// experience</p>
+    <h2 class="sec-title reveal">Work Log</h2>
+
+    <div class="role-block reveal">
+      <div class="role-meta">
+        <span class="dates">OCT 2024 — PRESENT</span>
+        <span class="company">Serrala</span>
+        <span class="place">Pune</span>
+        <span class="title">Senior Software Engineer</span>
+      </div>
+      <ul class="bullets">
+        <li><b>Core AR Automation Platform:</b> Engineered the core backend of a multi-tenant accounts-receivable automation platform (Flask/Celery/MySQL) — 900+ commits, 116K+ lines shipped, 550+ REST endpoints, and 920+ database migrations across a production system serving live client tenants.</li>
+        <li><b>ERP &amp; Financial-Systems Integration:</b> Built and maintained integrations with 8 external ERP, banking, and payment systems — NetSuite, SAP (BTP &amp; Public Cloud), Sage Intacct, QuickBooks (Online &amp; Desktop), Stripe, and TempWorks — automating cash application and invoice/payment sync at scale.</li>
+        <li><b>Credit Management Platform:</b> Delivered an end-to-end B2B credit management platform in 2 months — credit limits, applications, RBAC-driven approvals, D&amp;B risk assessment, and daily automated scoring across 7 weighted credit KPIs — now live across 2 enterprise clients, serving credit decisions for 500K+ customers via a 328-endpoint FastAPI microservice.</li>
+        <li><b>Background Job Infrastructure:</b> Built and operate a Celery + RedBeat distributed background-job system processing ~45,000 production jobs/day at 0% infra-failure rate — with Slack-integrated failure alerting, a custom monitoring dashboard for real-time job/worker visibility, and automatic worker autoscaling.</li>
+        <li><b>AI Agent Platform:</b> Built an AI-powered agent platform for accounts-receivable operations, live across 5 enterprise clients — 12 specialized LLM agents (LangChain + LangGraph, Azure OpenAI GPT-4o) spanning credit scoring, email collections, auto-drafted responses, and thread classification, plus 8 conversational sub-agents powering a vector-grounded RAG chatbot over Azure Cognitive Search and Cosmos DB.</li>
+        <li><b>Database Performance:</b> Led performance optimization initiatives, implementing MySQL and PostgreSQL partitioning — improving query response times by 60% and boosting system scalability.</li>
+      </ul>
+    </div>
+
+    <div class="role-block reveal">
+      <div class="role-meta">
+        <span class="dates">FEB 2022 — JUL 2024</span>
+        <span class="company">Turtlemint</span>
+        <span class="place">Pune, India</span>
+        <span class="title">Software Developer</span>
+      </div>
+      <ul class="bullets">
+        <li><b>Microservices Architecture:</b> Designed and implemented a Spring Cloud Config Server using GitHub and Vault, dynamically managing configuration for 110 microservices — cut ECR costs by 80% and removed embedded properties from Docker images entirely.</li>
+        <li><b>Cross-Platform Integration:</b> Engineered Python and Node.js libraries to integrate Spring Cloud Config with Django, Node.js, Play, React, and Angular, unifying configuration management across the stack.</li>
+        <li><b>Scalability &amp; Storage:</b> Built a Django-based file upload service integrated with AWS S3, EFS, EKS, and Azure Storage, managing 8M+ uploads per month at a 99.8% success rate.</li>
+        <li><b>CI/CD Transformation:</b> Led the migration to a Tekton-based CI/CD pipeline enabling single-image deployment across 110 microservices, reducing deployment errors by 60%.</li>
+        <li><b>Cloud Cost Optimization:</b> Cut AWS costs 40% by optimizing GuardDuty, S3, the ELK pipeline, VPC, and CloudWatch; built an Athena-based billing dashboard aggregating 10 AWS accounts with automated spike alerts for finance.</li>
+      </ul>
+    </div>
+
+    <div class="role-block reveal">
+      <div class="role-meta">
+        <span class="dates">JAN 2020 — JAN 2022</span>
+        <span class="company">LTIMindtree</span>
+        <span class="place">Pune, India</span>
+        <span class="title">Senior Product Engineer</span>
+      </div>
+      <ul class="bullets">
+        <li><b>Kubernetes Migration:</b> Led the migration of 54 microservices to Kubernetes and built a one-click deployment system that cut product setup time by 99%.</li>
+        <li><b>Flask Microservice:</b> Designed a service to dynamically provision Jupyter, RStudio, Spark, and SciPy notebooks on demand, with seamless resource selection for users.</li>
+        <li><b>External Data Integration:</b> Built a scalable data access module spanning MySQL, PostgreSQL, NAS, AWS S3, Azure Blob, and Google Cloud Storage for seamless multi-cloud ingestion.</li>
+        <li><b>Containerization:</b> Containerized all services with Docker, optimized for EKS, and deployed via Helm.</li>
+        <li><b>Secrets Management:</b> Implemented HashiCorp Vault for credential and secret management platform-wide.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">// skills</p>
+    <h2 class="sec-title reveal">Toolset</h2>
+
+    <div class="reveal">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Frameworks</h3>
+        <div class="tags">
+          <span class="tag">Flask</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Spring Boot</span>
+          <span class="tag">ReactJS</span><span class="tag">Celery</span><span class="tag">RabbitMQ</span>
+          <span class="tag">Redis</span><span class="tag">Kafka</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Technologies &amp; Tools</h3>
+        <div class="tags">
+          <span class="tag">AWS ECS</span><span class="tag">AWS EKS</span><span class="tag">AWS ECR</span>
+          <span class="tag">AWS S3</span><span class="tag">AWS Lambda</span><span class="tag">AWS Athena</span>
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">PostgreSQL</span>
+          <span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Elasticsearch</span>
+          <span class="tag">Opensearch</span><span class="tag">CircleCI</span><span class="tag">GitHub Actions</span>
+          <span class="tag">Vault</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Architecture &amp; Practice</h3>
+        <div class="tags">
+          <span class="tag">Microservices</span><span class="tag">System Design</span>
+          <span class="tag">Performance Optimization</span><span class="tag">Scalability</span>
+          <span class="tag">Security</span><span class="tag">pytest</span><span class="tag">unittest</span>
+          <span class="tag">Technical Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">// projects</p>
+    <h2 class="sec-title reveal">Selected Build</h2>
+
+    <div class="project reveal">
+      <h3>Scalable &amp; Distributed Food Ordering System</h3>
+      <p class="desc">A microservices-based food ordering platform with asynchronous messaging and real-time order tracking.</p>
+      <ul class="bullets">
+        <li><b>Microservices:</b> Independent services for order processing, vendor management, and communication — scaled and fault-tolerant.</li>
+        <li><b>Async Messaging:</b> RabbitMQ fanout exchange distributes order events across services for high availability.</li>
+        <li><b>Dual Database Strategy:</b> PostgreSQL for menu data, MySQL for order processing — deliberate database segregation.</li>
+        <li><b>Real-Time Notifications:</b> Celery-powered email service confirms orders and status changes as they happen.</li>
+        <li><b>Containerized:</b> Docker + Kubernetes for horizontal scaling of individual services.</li>
+      </ul>
+      <a class="repo-link" href="https://github.com/jayantreddy181198/delivery-system" target="_blank" rel="noopener">↗ github.com/jayantreddy181198/delivery-system</a>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">// education &amp; certificates</p>
+    <h2 class="sec-title reveal">Record</h2>
+    <div class="ledger reveal">
+      <div class="ledger-item">
+        <div class="k">Education</div>
+        <div class="v">University of Mumbai</div>
+        <div class="sub">B.E. in Information Technology</div>
+        <span class="dates">AUG 2016 — JUN 2020</span>
+      </div>
+      <div class="ledger-item">
+        <div class="k">Certificate</div>
+        <div class="v">Meta Front-End Developer</div>
+        <div class="sub">Professional Certificate, Coursera</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div class="big">Let's build something that stays up. <a href="mailto:jayantreddybodkurwar@gmail.com">Say hello →</a></div>
+    <div class="foot-links">
+      <a href="mailto:jayantreddybodkurwar@gmail.com">jayantreddybodkurwar@gmail.com</a>
+      <a href="tel:+917977046748">+91 7977046748</a>
+      <a href="https://github.com/jayantreddy181198" target="_blank" rel="noopener">github.com/jayantreddy181198</a>
+      <a href="https://linkedin.com/in/jayant-bodkurwar-67aa9414a" target="_blank" rel="noopener">linkedin.com/in/jayant-bodkurwar-67aa9414a</a>
+    </div>
+  </div>
+  <div class="wrap copyright">© <span id="year"></span> Jayant Bodkurwar — built with a single HTML file, on purpose.</div>
+</footer>
+
+<script>
+  // theme toggle
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored = localStorage.getItem('theme');
+    if(stored){ root.setAttribute('data-theme', stored); }
+    btn.addEventListener('click', function(){
+      var current = root.getAttribute('data-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var effectiveCurrent = current || (prefersDark ? 'dark' : 'light');
+      var next = effectiveCurrent === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
+
+  // scroll reveal
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ambient pipeline-flow canvas
+  (function(){
+    var canvas = document.getElementById('flow');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.closest('.hero');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w, h, tracks = [];
+    var running = true;
+
+    function amber(alpha){ return 'rgba(232,163,61,' + alpha + ')'; }
+    function teal(alpha){ return 'rgba(63,166,166,' + alpha + ')'; }
+
+    function resize(){
+      w = hero.offsetWidth; h = hero.offsetHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      buildTracks();
+    }
+
+    function buildTracks(){
+      tracks = [];
+      var rows = Math.max(4, Math.floor(h / 90));
+      for(var i=0;i<rows;i++){
+        var y = (h / (rows+1)) * (i+1) + (Math.random()*20-10);
+        var speed = 0.35 + Math.random()*0.55;
+        var dashLen = 40 + Math.random()*70;
+        var gap = 90 + Math.random()*140;
+        var offset = Math.random() * (dashLen+gap);
+        var color = Math.random() > 0.55 ? 'amber' : 'teal';
+        tracks.push({ y: y, speed: speed, dashLen: dashLen, gap: gap, offset: offset, color: color });
+      }
+    }
+
+    function draw(){
+      if(!running) return;
+      ctx.clearRect(0,0,w,h);
+      tracks.forEach(function(t){
+        ctx.strokeStyle = 'rgba(140,150,165,0.10)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0,t.y); ctx.lineTo(w,t.y); ctx.stroke();
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = t.color === 'amber' ? amber(0.55) : teal(0.5);
+        var period = t.dashLen + t.gap;
+        var x = -((t.offset) % period);
+        while(x < w){
+          ctx.beginPath();
+          ctx.moveTo(Math.max(x,0), t.y);
+          ctx.lineTo(Math.min(x+t.dashLen, w), t.y);
+          ctx.stroke();
+          x += period;
+        }
+        if(!reduceMotion){ t.offset += t.speed; }
+      });
+      if(!reduceMotion){ requestAnimationFrame(draw); }
+    }
+
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', function(){
+      running = document.visibilityState === 'visible';
+      if(running && !reduceMotion){ requestAnimationFrame(draw); }
+    });
+
+    resize();
+    draw();
+  })();
+</script>
+
+</body>
+</html>
